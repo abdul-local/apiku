@@ -8,6 +8,7 @@ const verifikasi = require('../../middleware/auth');
 
 
 
+
 const router=express.Router();
 
 
@@ -68,9 +69,22 @@ router.post('/login',(req,res)=>{
 
 })
 
-router.post('/rahasia',verifikasi(2),(req,res)=>{
 
-     res.send("halaman rahasia")
+router.post('/registerasi2',(req,res)=>{
+     const post1={
+         
+          image:req.file.path
 
+     };
+      con.query(`INSERT INTO user_image (id_user_image, image) VALUES ('${post1.id_user_image}', '${post1.image}');`,(err, result)=>{
+        if (err) throw err;
+
+        res.status(200).json({msg:'berhasil mengupload image'});
+     })
+
+
+         
+    
 })
+
 module.exports=router;
